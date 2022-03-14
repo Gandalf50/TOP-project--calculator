@@ -36,3 +36,24 @@ function operate (num1, operator, num2) {
     }
     return result;
 }
+
+let screen = document.getElementById('screen');
+let numbers = [];
+let simbol = [];
+
+document.querySelectorAll('.btn').forEach(item => {
+    item.addEventListener('click', () => {
+        if (item.id == '+' || item.id == '-' || item.id == '*' || item.id == '/') {
+            simbol.push(item.id);
+        } else if (item.id == '=') {
+            //operate
+            alert('This button is not ready yet');
+        } else if (item.id == 'clearBtn') {
+            screen.textContent = '';
+            numbers = [];
+        } else {
+            numbers += item.id;
+            screen.textContent = numbers;
+        }
+    })
+});
