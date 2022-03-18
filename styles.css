@@ -5,6 +5,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #cccccc;
 }
 
 #preview {
@@ -17,6 +18,7 @@ body {
     justify-content: space-between;
     align-items: center;
     border-radius: 30px;
+    box-shadow: -3px -3px 3px inset, 3px 3px 3px #FFFFFF inset;
 }
 
 #screen {
@@ -26,8 +28,12 @@ body {
     border-radius: 5px;
     text-align: right;
     font-family: 'DSEG14ClassicRegular';
+    font-size: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     padding: 20px 10px;
     box-sizing: border-box;
+    box-shadow: 2px 2px inset, 2px 2px #FFFFFF;
 }
 
 button {
@@ -39,6 +45,7 @@ button {
     font-weight: 900;
     font-size: larger;
     margin: 0px;
+    box-shadow: 2px 2px black;
 }
 
 #keys {
