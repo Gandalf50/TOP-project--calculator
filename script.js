@@ -89,7 +89,7 @@ document.querySelectorAll('button').forEach(item => {
             if (item.id == "clearBtn") {
                 clear();
             } else if (item.id == "+" || item.id == "-" || item.id == "*" || item.id == "/") {
-                if (firstSecond == 1 && simbol != "") {
+                if (simbol != "") {
                     ans = operate(firstNumber,simbol,secondNumber);
                     firstNumber = ans;
                     secondNumber = "";
@@ -112,6 +112,8 @@ document.querySelectorAll('button').forEach(item => {
                         firstNumber = -1 * firstNumber;
                         screen.textContent = firstNumber;
                         simbol = "";
+                    } else {
+                        firstNumber = "";
                     }
                 }
             }
