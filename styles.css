@@ -1,3 +1,17 @@
+:root {
+    --background-color-grey: #555555;
+    --green-color-darker: #53aa10;
+    --green-color-dark: #5fc314;
+    --green-color-light: #95f04f;
+    --screen-color: #BCD1C0;
+    --btn-font-color: #e9f6fa;
+    --btn-num-background: #6d6d6d;
+    --btn-num-border: #7c7c7c;
+    --btn-num-hover-background: #555555;
+    --btn-num-hover-border: #6d6d6d;
+
+}
+
 body {
     margin: 0px;
     padding: 0px;
@@ -5,7 +19,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #bedce6;
+    background-color: var(--btn-font-color);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -13,7 +27,7 @@ body {
 }
 
 #preview {
-    background-color: #555555;
+    background-color: var(--background-color-grey);
     width: 205px;
     height: 300px;
     margin: 30px;
@@ -29,7 +43,7 @@ body {
 #screen {
     width: 100%;
     height: 70px;
-    background-color: #BCD1C0;
+    background-color: var(--screen-color);
     border-radius: 5px;
     text-align: right;
     font-family: 'DSEG14ClassicRegular';
@@ -44,14 +58,29 @@ body {
 button {
     height: 40px;
     aspect-ratio: 1;
-    background-color: #696969;
-    border: solid #7a7a7a;
+    background-color: var(--btn-num-background);
+    border: solid var(--btn-num-border);
     border-radius: 7px;
     font-weight: 900;
     font-size: larger;
-    color: #bedce6;
+    color: var(--btn-font-color);
     margin: 0px;
     box-shadow: 2px 2px black;
+}
+
+button:active {
+    box-shadow: 0 0px;
+    transform: translateY(2px);
+}
+
+.num:hover {
+    background-color: var(--btn-num-hover-background);;
+    border: solid var(--btn-num-hover-border);
+}
+
+.sign:hover {
+    background-color: var(--green-color-darker);
+    border: solid var(--green-color-dark);
 }
 
 #keys {
@@ -69,9 +98,9 @@ button {
     gap: 15px;
 }
 
-.equal, #clearBtn{
-    background-color: #5fc314;
-    border: solid #95f04f;
+.sign {
+    background-color: var(--green-color-dark);
+    border: solid var(--green-color-light);
 }
 
 #clear {
