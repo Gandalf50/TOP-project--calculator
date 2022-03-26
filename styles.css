@@ -68,14 +68,14 @@ button {
     box-shadow: 2px 2px black;
 }
 
+button:hover {
+    background-color: var(--btn-num-hover-background);;
+    border: solid var(--btn-num-hover-border);
+}
+
 button:active {
     box-shadow: 0 0px;
     transform: translateY(2px);
-}
-
-.num:hover {
-    background-color: var(--btn-num-hover-background);;
-    border: solid var(--btn-num-hover-border);
 }
 
 .sign:hover {
@@ -103,13 +103,13 @@ button:active {
     border: solid var(--green-color-light);
 }
 
-#clear {
+#various {
     width: 100%;
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
 }
 
-#clearBtn {
+#clearBtn, #eraser {
     display: flex;
     align-items: center;
     justify-content: center;
