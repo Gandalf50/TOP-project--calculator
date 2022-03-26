@@ -3,18 +3,31 @@ function add (a=0,b=0) {
 }
 
 function substract (a=0,b=0) {
-    return a-b;
+    if (b == "") {
+        return -1 * a;
+    } else {
+        return a-b;
+    }
 }
 
-function multiply (a=0,b=1) {
-    return a*b;
+function multiply (a,b) {
+    if (a != "" && b != "") {
+        return a*b;
+    } else if (a == "") {
+        return +b;
+    } else if (b == "") {
+        return +a;
+    }
 }
 
-function divide (a=1,b=1) {
-    if (b != 0) {
+function divide (a,b) {
+    if (b == "") {
+        return a;
+    } else if (b != 0) {
         return a/b;
     } else {
-        return "Can't divide by 0";
+        alert("Can't divide by 0");
+        clear();
     }
 }
 
@@ -44,41 +57,65 @@ let screen = document.getElementById('screen');
 let firstNumber = "";
 let secondNumber = "";
 let simbol = "";
-let controler = 0;
+let ans = "";
+let firstSecond = 0;
+
+function clear () {
+    screen.textContent = "";
+    firstNumber = "";
+    secondNumber = "";
+    simbol = "";
+    firstSecond = 0;
+    ans = "";
+}
+
+//document.querySelectorAll('button').forEach(key => key.addEventListener('transitionend', removeTransition))
 
 document.querySelectorAll('button').forEach(item => {
     item.addEventListener('click', () => {
-        if (item.id == '+' || item.id == '-' || item.id == '*' || item.id == '/') {
-            simbol = item.id;
-            screen.textContent += simbol;
-            controler = controler == 0 ? 1:0;
-        } else if (item.id == '=') {
-            if (firstNumber == "" || simbol == "") {
-                return;
-            } else {
-                firstNumber = operate(firstNumber,simbol,secondNumber);
+        if (item.className == "num") {
+            if (firstSecond == 0 && ans == "") {
+                firstNumber += item.id;
                 screen.textContent = firstNumber;
-                secondNumber = "";
-                simbol = "";
-                controler = controler == 0 ? 1:0;
-            }
-        } else if (item.id == 'clearBtn') {
-            screen.textContent = '';
-            firstNumber = "";
-            secondNumber = "";
-            simbol = "";
-            controler = 0;
-        } else {
-            if (screen.textContent != "" && simbol == "") {
-                firstNumber = item.id;
-                screen.textContent = firstNumber;
-            } else if (controler == 0) {
+            } else if (secondNumber == "" && ans != "" && firstSecond != 1) {
+                clear();
                 firstNumber += item.id;
                 screen.textContent = firstNumber;
             } else {
                 secondNumber += item.id;
-                screen.textContent += secondNumber;
+                screen.textContent = secondNumber;
+            }
+        } else {
+            if (item.id == "clearBtn") {
+                clear();
+            } else if (item.id == "+" || item.id == "-" || item.id == "*" || item.id == "/") {
+                if (firstSecond == 1 && simbol != "") {
+                    ans = operate(firstNumber,simbol,secondNumber);
+                    firstNumber = ans;
+                    secondNumber = "";
+                    screen.textContent = firstNumber;
+                }
+                simbol = item.id;
+                if (firstNumber != "") {
+                    firstSecond = 1;
+                }
+            } else if (item.id == "=") {
+                if (firstNumber != "" && secondNumber != "" && simbol != "") {
+                    ans = operate(firstNumber,simbol,secondNumber);
+                    firstNumber = ans;
+                    secondNumber = "";
+                    simbol = "";
+                    screen.textContent = firstNumber;
+                    firstSecond = 1;
+                } else if (secondNumber == "") {
+                    if (simbol == "-" ) {
+                        firstNumber = -1 * firstNumber;
+                        screen.textContent = firstNumber;
+                        simbol = "";
+                    }
+                }
             }
         }
+        //console.log("first: " + firstNumber, "simbol: " + simbol, "second: " + secondNumber, "ans: " + ans, "number: " + firstSecond);
     })
 });
