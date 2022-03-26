@@ -47,7 +47,7 @@ function operate (num1, operator, num2) {
             result = divide(num1,num2);
         break;
     }
-    return Number(result.toFixed(4)) /*toFixed keeps only 4 decimals
+    return Number(result.toFixed(7)) /*toFixed keeps only 4 decimals
     and Number turns it back into a number (from a string), this way
     we avoid getting numbers like 0.6000000001 from the calculations*/;
 }
@@ -73,6 +73,9 @@ function clear () {
 
 document.querySelectorAll('button').forEach(item => {
     item.addEventListener('click', () => {
+        if (item.id == "." && screen.textContent.includes(".")) {
+            return;
+        }
         if (item.className == "num") {
             if (firstSecond == 0 && ans == "") {
                 firstNumber += item.id;
@@ -85,7 +88,7 @@ document.querySelectorAll('button').forEach(item => {
                 secondNumber += item.id;
                 screen.textContent = secondNumber;
             }
-        } else {
+        } else { //this "else" is separated form the next "if" just so that it's easier to divide numbers from the rest of the buttons
             if (item.id == "clearBtn") {
                 clear();
             } else if (item.id == "+" || item.id == "-" || item.id == "*" || item.id == "/") {
@@ -116,6 +119,8 @@ document.querySelectorAll('button').forEach(item => {
                         firstNumber = "";
                     }
                 }
+            } else if (item.id == "eraser") {
+                alert("This button is useless at the moment, it'll eventually allow you to delete the last character you typed in");
             }
         }
         //console.log("first: " + firstNumber, "simbol: " + simbol, "second: " + secondNumber, "ans: " + ans, "number: " + firstSecond);
