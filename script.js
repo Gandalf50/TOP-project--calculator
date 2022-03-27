@@ -1,3 +1,4 @@
+//math functions
 function add (a=0,b=0) {
     return +a + +b;
 }
@@ -30,7 +31,7 @@ function divide (a,b) {
         clear();
     }
 }
-
+//the operate function calls the math functions
 function operate (num1, operator, num2) {
     let result = 0;
     switch (operator) {
@@ -52,7 +53,7 @@ function operate (num1, operator, num2) {
     we avoid getting numbers like 0.6000000001 from the calculations*/;
 }
 
-/*global var*/
+//global var
 let screen = document.getElementById('screen');
 let firstNumber = "";
 let secondNumber = "";
@@ -60,6 +61,7 @@ let simbol = "";
 let ans = "";
 let firstSecond = 0;
 
+//resets the global var
 function clear () {
     screen.textContent = "";
     firstNumber = "";
@@ -69,8 +71,7 @@ function clear () {
     ans = "";
 }
 
-//document.querySelectorAll('button').forEach(key => key.addEventListener('transitionend', removeTransition))
-
+//calculator algorithm
 document.querySelectorAll('button').forEach(item => {
     item.addEventListener('click', () => {
         if (item.id == "." && screen.textContent.includes(".")) {
@@ -126,3 +127,104 @@ document.querySelectorAll('button').forEach(item => {
         //console.log("first: " + firstNumber, "simbol: " + simbol, "second: " + secondNumber, "ans: " + ans, "number: " + firstSecond);
     })
 });
+
+//keyboard integration
+window.addEventListener('keydown',logKey);
+
+function logKey (e) {
+    key = `${e.code}`;
+    if (key.includes("Numpad")) {
+        switch (key.slice(6)) {
+            case "0":
+                document.getElementById("0").click();
+                break;
+            case "1":
+                document.getElementById("1").click();
+                break;
+            case "2":
+                document.getElementById("2").click();
+                break;
+            case "3":
+                document.getElementById("3").click();
+                break;
+            case "4":
+                document.getElementById("4").click();
+                break;
+            case "5":
+                document.getElementById("5").click();
+                break;
+            case "6":
+                document.getElementById("6").click();
+                break;
+            case "7":
+                document.getElementById("7").click();
+                break;
+            case "8":
+                document.getElementById("8").click();
+                break;
+            case "9":
+                document.getElementById("9").click();
+                break;
+            case "Add":
+                document.getElementById("+").click();
+                break;
+            case "Subtract":
+                document.getElementById("-").click();
+                break;
+            case "Multiply":
+                document.getElementById("*").click();
+                break;
+            case "Divide":
+                document.getElementById("/").click();
+                break;
+            case "Decimal":
+                document.getElementById(".").click();
+                break;
+        }
+    } else if(key.includes("Digit")) {
+        switch (key.slice(5)) {
+            case "0":
+                if (event.shiftKey) {
+                    document.getElementById("=").click();
+                } else{
+                    document.getElementById("0").click();
+                }
+                break;
+            case "1":
+                document.getElementById("1").click();
+                break;
+            case "2":
+                document.getElementById("2").click();
+                break;
+            case "3":
+                document.getElementById("3").click();
+                break;
+            case "4":
+                document.getElementById("4").click();
+                break;
+            case "5":
+                document.getElementById("5").click();
+                break;
+            case "6":
+                document.getElementById("6").click();
+                break;
+            case "7":
+                document.getElementById("7").click();
+                break;
+            case "8":
+                document.getElementById("8").click();
+                break;
+            case "9":
+                document.getElementById("9").click();
+                break;
+        }
+    } else if (key == "Backspace") {
+        document.getElementById("eraser").click();
+    } else {
+        switch (key) {
+            case "Period":
+                document.getElementById(".").click();
+                break;
+        }
+    }
+}
