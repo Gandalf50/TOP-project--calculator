@@ -121,7 +121,14 @@ document.querySelectorAll('button').forEach(item => {
                     }
                 }
             } else if (item.id == "eraser") {
-                alert("This button is useless at the moment, it'll eventually allow you to delete the last character you typed in");
+                //alert("This button is useless at the moment, it'll eventually allow you to delete the last character you typed in");
+                if (firstSecond == 0) {
+                    firstNumber = screen.textContent.slice(0,-1);
+                    screen.textContent = firstNumber;
+                } else {
+                    secondNumber = screen.textContent.slice(0,-1);
+                    screen.textContent = secondNumber;
+                }
             }
         }
         //console.log("first: " + firstNumber, "simbol: " + simbol, "second: " + secondNumber, "ans: " + ans, "number: " + firstSecond);
@@ -133,6 +140,7 @@ window.addEventListener('keydown',logKey);
 
 function logKey (e) {
     key = `${e.code}`;
+    //alert(key);
     if (key.includes("Numpad")) {
         switch (key.slice(6)) {
             case "0":
@@ -224,6 +232,12 @@ function logKey (e) {
         switch (key) {
             case "Period":
                 document.getElementById(".").click();
+                break;
+            case "Enter":
+                document.getElementById("=").click();
+                break;
+            case "Delete":
+                document.getElementById("clearBtn").click();
                 break;
         }
     }
